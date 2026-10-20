@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bài 3 session 11</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h4 id="tham-số-cốt-lõi"><strong>1. Tham số cốt lõi</strong></h4>
+<ul>
+<li>
+<p><strong>Lookup_value:</strong> <code>TRIM(C2)</code> (Cắt bỏ khoảng trắng thừa - Bẫy 1).</p>
+</li>
+<li>
+<p><strong>Table_array:</strong> <code>DanhMucTacGia!$A$2:$E$100</code> (Cố định bằng <code>$</code> để tránh trôi vùng - Bẫy 3).</p>
+</li>
+<li>
+<p><strong>Range_lookup:</strong> <code>FALSE</code> (hoặc <code>0</code>).</p>
+</li>
+<li>
+<p><strong>Col_index_num:</strong> Cột D = <strong>2</strong> | Cột E = <strong>4</strong> | Cột F = <strong>5</strong>.</p>
+</li>
+</ul>
+<h4 id="công-thức-hoàn-chỉnh-đã-chống-lỗi-na-bằng-iferror---bẫy-2"><strong>2. Công thức hoàn chỉnh (Đã chống lỗi <code>#N/A</code> bằng <code>IFERROR</code> - Bẫy 2)</strong></h4>
+<ul>
+<li>
+<p><strong>Ô D2 (Tên tác giả):</strong></p>
+<p>Excel</p>
+<pre><code>=IFERROR(VLOOKUP(TRIM(C2), DanhMucTacGia!$A$2:$E$100, 2, FALSE), "Chưa cập nhật")
+
+</code></pre>
+</li>
+<li>
+<p><strong>Ô E2 (Phòng trình bày):</strong> <em>(Chỉ thay số <code>2</code> thành <code>4</code>)</em></p>
+<p>Excel</p>
+<pre><code>=IFERROR(VLOOKUP(TRIM(C2), DanhMucTacGia!$A$2:$E$100, 4, FALSE), "Chưa cập nhật")
+
+</code></pre>
+</li>
+<li>
+<p><strong>Ô F2 (Thù lao):</strong> <em>(Chỉ thay số <code>2</code> thành <code>5</code>)</em></p>
+<p>Excel</p>
+<pre><code>=IFERROR(VLOOKUP(TRIM(C2), DanhMucTacGia!$A$2:$E$100, 5, FALSE), "Chưa cập nhật")
+
+</code></pre>
+</li>
+</ul>
+<h4 id="hậu-quả-nếu-quên-dấu-"><strong>3. Hậu quả nếu quên dấu <code>$</code></strong></h4>
+<ul>
+<li>Khi kéo công thức xuống, vùng tra cứu sẽ bị trôi theo (vd: từ <code>A2:E100</code> thành <code>A3:E101</code>, <code>A4:E102</code>…). Hậu quả là các mã tác giả ở những dòng đầu tiên sẽ bị bỏ sót, dẫn đến báo lỗi hoặc sai kết quả.</li>
+</ul>
+</div>
+</body>
+
+</html>
